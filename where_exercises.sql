@@ -19,7 +19,7 @@ FROM employees
 WHERE first_name = 'Irena' 
 OR first_name = 'Vidya' 
 OR first_name ='Maya';
--- The number of records returned match the number from Q2 only if you use the above syntax when using only OR
+-- The number of records returned match the number from Q2 only if you use the above syntax when using only OR.
 
 -- 4. Find all current or previous employees with first names 'Irena', 'Vidya', or 'Maya', 
 -- using OR, and who is male. Enter a comment with the number of records returned.
