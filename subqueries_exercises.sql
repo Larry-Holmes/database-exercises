@@ -29,16 +29,17 @@ WHERE first_name like 'Aamod')
 AND de.to_date > NOW()
 ;
 
-SELECT first_name
+/*SELECT first_name
 FROM employees
 WHERE first_name like 'Aamod';
-
+*/
 -- 3.  How many people in the employees table are no longer working for the company? Give the answer in a comment in your code.
-SELECT emp_no
+/*SELECT emp_no
 FROM salaries s
 WHERE to_date < NOW();
+*/
 
-SELECT COUNT(e.emp_no)
+/*SELECT COUNT(e.emp_no)
 FROM employees e
 JOIN salaries s 
 ON e.emp_no = s.emp_no
@@ -46,8 +47,18 @@ WHERE e.emp_no IN (SELECT s.emp_no
 FROM salaries s
 WHERE to_date < NOW())
 ;
+*/
 
--- There are 2844047 
+select count(*)
+from employees
+where emp_no not in (
+	select emp_no
+    from dept_emp
+    where to_date > NOW()
+    )
+;
+
+-- There are 59900
 
 -- 4. Find all the current department managers that are female. List their names in a comment in your code.
 DESCRIBE dept_manager;
@@ -80,6 +91,14 @@ FROM salaries)
 AND to_date > NOW()
 ;
 
+SELECT *
+FROM employees
+JOIN salaries
+USING (emp_no)
+WHERE to_date > NOW()
+AND salary > (SELECT AVG(salary)
+FROM salaries)
+;
 SELECT AVG(salary)
 FROM salaries;
 
